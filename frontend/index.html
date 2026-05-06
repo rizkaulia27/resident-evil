@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head><title>Resident Evil Character</title></head>
+<body>
+    <p id="owner"></p>
+    <p id="nim"></p>
+
+    <h1 id="re-name">Memuat...</h1>
+    <ul id="char-list"></ul>
+
+    <hr>
+    <h3>Tambah Character Baru:</h3>
+    <input type="text" id="char-input" placeholder="Nama karakter...">
+    <button onclick="tambahKarakter()">Tambah</button>
+
+    <script>
+        const API_URL = "/api";
+
+        function loadData() {
+            fetch(`${API_URL}/info`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('re-name').innerText = data.judul_katalog;
+                    const list = document.getElementById('char-list');
+                    list.innerHTML = '';
+                    data.items.forEach(item => {
+                        let li = document.createElement('li');
+                        li.innerText = item;
+                        list.appendChild(li);
+                    });
+                    document.getElementById('owner').innerText = "Nama: " + data.pemilik;
+                    document.getElementById('nim').innerText = "NIM: " + data.nim;
+                });
+        }
+
+
+        function tambahKarakter() {
+            const input = document.getElementById('char-input');
+            fetch(`${API_URL}/add-item`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ item: input.value })
+            })
+            .then(res => res.json())
+            .then(() => {
+                input.value = '';
+                loadData();
+            });
+        }
+
+
+        loadData();
+    </script>
+</body>
+</html>
