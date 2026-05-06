@@ -14,7 +14,7 @@ nim_owner = os.environ.get('NIM_PRAKTIKAN', '00000000')
 # BAGIAN INI BEBAS KALIAN MODIFIKASI SESUAI TEMA YANG KALIAN PILIH
 # =====================================================================
 katalog_data = {
-    "judul_katalog": f"Character Game Resident Evil MBG {nama_owner}",
+    "judul_katalog": f"Character Game Resident Evil Favorit {nama_owner}",
     "pemilik": nama_owner,
     "nim": nim_owner,
     "items": ["Ada Wong", "Leon S. Kennedy", "Chris Redfield", "Claire Redfield", "Jill Valentine", "Jake Muller", "Sherry Birkin"]
